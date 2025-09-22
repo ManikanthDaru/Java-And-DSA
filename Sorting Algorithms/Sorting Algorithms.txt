@@ -1,0 +1,268 @@
+/*A C program to implement all sorting techniques using switch statement in a single program.*/
+#include <stdio.h>
+void bubblesort(int a[],int n);
+void selectionsort(int a[],int n);
+void insertionsort(int a[],int n);
+void quicksort(int a[],int left,int right);
+void mergesort(int a[],int low,int high);
+void merge(int a[],int low,int mid,int high);
+void countingsort(int a[],int n,int place);
+void radixsort(int a[],int n);
+void countsort(int a[],int n);
+void swap(int *a,int *b);
+void getarr(int a[],int n);
+int getmax(int a[],int n);
+int main()
+{
+   int n,ch;
+   printf("Enter the size of the array:-\n");
+   scanf("%d",&n);
+   int i,a[n];
+   printf("Enter the elements of the array:-\n");
+   for (i=0;i<n;i++)
+   {
+     scanf("%d",&a[i]);
+   }
+   printf("Enter the choice:-\n");
+   scanf("%d",&ch);
+   printf("Unsorted list:-\n");
+   getarr(a,n);
+   switch(ch)
+   {
+      case 1:
+         printf("Sorting algorithm-->Bubble sort\nSorted list:-\n");
+         bubblesort(a,n);
+         break;
+      case 2:
+         printf("Sorting algorithm-->Selection sort\nSorted list:-\n");
+         selectionsort(a,n);
+         break;
+      case 3:
+         printf("Sorting algorithm-->Insertion sort\nSorted list:-\n");
+         insertionsort(a,n);
+         break;
+      case 4:
+         printf("Sorting algorithm-->Quick sort\nSorted list:-\n");
+         quicksort(a,0,n-1);
+         break;
+      case 5:
+         printf("Sorting algorithm-->Merge sort\nSorted list:-\n");
+         mergesort(a,0,n-1);
+         break;
+      case 6:
+         printf("Sorting algorithm-->Radix sort\nSorted list:-\n");
+         radixsort(a,n);
+         break;
+      case 7:
+         printf("Sorting algorithm-->Count sort\nSorted list:-\n");
+         countsort(a,n);
+         break;
+   }
+   getarr(a,n);
+   return 0;
+}
+void bubblesort(int a[],int n)
+{
+    int i,j;
+    for (i=1;i<n;i++)
+    {
+        for (j=0;j<n-i;j++)
+        {
+            if (a[j]>a[j+1])
+            {
+                swap(&a[j],&a[j+1]);
+            }
+        }
+    }
+}
+void selectionsort(int a[],int n)
+{
+    int i,j,min_index;
+    for (i=0;i<n-1;i++)
+    {
+        min_index=i;
+        for (j=i+1;j<n;j++)
+        {
+            if (a[min_index]>a[j])
+            {
+                min_index=j;
+            }
+        }
+        if (min_index!=i)
+        {
+            swap(&a[min_index],&a[i]);
+        }
+    }
+}
+void insertionsort(int a[],int n)
+{
+    int i,index,j;
+    for (i=1; i<n;i++)
+    {
+        index=a[i];
+        j=i-1;
+        while (j>=0&&a[j]>index)
+        {
+            a[j+1]=a[j];
+            j=j-1;
+        }
+        a[j+1]=index;
+    }
+}
+void quicksort(int a[],int left,int right)
+{
+   int pivot,t,i,j,l,r,temp;
+   if (left<right)
+   {
+      pivot=a[left];
+      l=left;
+      r=right;
+      while (l<r)
+      {
+         while (a[l]<=pivot&&l<=right)
+         {
+            l++;
+         }
+         while (a[r]>pivot)
+         {
+            r--;
+         }
+         if (l<r)
+         {
+            t=a[l];
+            a[l]=a[r];
+            a[r]=t;
+         }
+      }
+      temp=a[left];
+      a[left]=a[r];
+      a[r]=temp;
+      quicksort(a,left,r-1);
+      quicksort(a,r+1,right);
+   }
+}
+void mergesort(int a[],int low,int high)
+{
+   int mid;
+   if (low<high)
+   {
+      mid=(low+high)/2;
+      mergesort(a,low,mid);
+      mergesort(a,mid+1,high);
+      merge(a,low,mid,high);
+   }
+}
+void merge(int a[],int low,int mid,int high)
+{
+   int b[10],h,k,i,j;
+   i=low;
+   j=mid+1;
+   k=low;
+   while (i<=mid&&j<=high)
+   {
+      if (a[i]<a[j])
+      {
+         b[k++]=a[i++];
+      }
+      else
+      {
+         b[k++]=a[j++];
+      }
+   }
+   while (i<=mid)
+   {
+      b[k++]=a[i++];
+   }
+   while (j<=high)
+   {
+      b[k++]=a[j++];
+   }
+   for (i=low;i<=high;i++)
+   {
+      a[i]=b[i];
+   }
+}
+void countingsort(int a[],int n,int place) 
+{
+   int output[n];
+   int i,count[10]={0};
+   for (i=0;i<n;i++) 
+   {
+       count[(a[i]/place)%10]++;
+   }
+   for (i=1;i<10;i++) 
+   {
+       count[i]+=count[i-1];
+   }
+   for (i=n-1;i>=0;i--) 
+   {
+       output[count[(a[i]/place)%10]-1]=a[i];
+       count[(a[i]/place)%10]--;
+   }
+   for (i=0;i<n;i++)
+   {
+       a[i]=output[i];
+   }
+}
+void radixsort(int a[],int n)
+{
+   int place,max=getmax(a,n);
+   for (place=1;max/place>0;place*=10) 
+   {
+       countingsort(a,n,place);
+   }
+}
+void countsort(int a[],int n)
+{
+   int output[n];
+   int max=getmax(a,n);
+   int i,count[max+1];
+   for (i=0;i<=max;i++)
+   {
+      count[i]=0;
+   }
+   for (i=0;i<n;i++)
+   {
+      count[a[i]]++;
+   }
+   for (i=1;i<=max;i++)
+   {
+      count[i]+=count[i-1];
+   }
+   for (i=n-1;i>=0;i--)
+   {
+      output[count[a[i]]-1]=a[i];
+      count[a[i]]--;
+   }
+   for (i=0;i<n;i++)
+   {
+      a[i]=output[i];
+   }
+}
+void swap(int *a,int *b)
+{
+    *a=*a^*b;
+    *b=*a^*b;  
+    *a=*a^*b;
+}
+void getarr(int a[],int n)
+{
+   int i;
+   for (i=0;i<n;i++)
+   {
+     printf("%d ",a[i]);
+   }
+   printf("\n");
+}
+int getmax(int a[],int n)
+{
+   int max=a[0],i;
+   for (i=1;i<n;i++)
+   {
+      if (a[i]>max)
+      {
+         max=a[i];
+      }
+   }
+   return max;
+}
