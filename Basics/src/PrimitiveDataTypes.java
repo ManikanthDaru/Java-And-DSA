@@ -1,3 +1,5 @@
+package Basics.src;
+
 import java.util.Scanner;
 
 public class PrimitiveDataTypes {
@@ -11,20 +13,22 @@ public class PrimitiveDataTypes {
         double for_large_decimals=12345.6789;
         long for_large_integers=123L;
         char for_characters='M';
-        boolean for_boolean=true;
+        boolean for_booleans=true;
         System.out.println(for_integers);
         System.out.println(for_decimals);
         System.out.println(for_large_decimals);
         System.out.println(for_large_integers);
         System.out.println(for_characters);
         System.out.println(for_boolean);*/
+
+//        taking primitive data types as input
         Scanner input=new Scanner(System.in);
 //        int a=input.nextInt();
 //        System.out.println(a);
 //        float b=input.nextFloat();
 //        System.out.println(b);
-//        int c=23_4_000_000;
-//        System.out.println(c);
+        int c=23_4_000_000;
+        System.out.println(c);
 //        double d=input.nextDouble();
 //        System.out.println(d);
 //        String e=input.nextLine();
