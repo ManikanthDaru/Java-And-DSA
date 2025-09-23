@@ -12,7 +12,7 @@ public class HelloWorld {
 
 //    .java->extension for java source code files
 
-//    public(keyword)->it means that the class/method can be accessed from anywhere (outside or inside the package)
+//    public(keyword)->it means that the class/method/variable can be accessed from anywhere (outside or inside the package)
 //    main function->entry point of the program
 //    psvm-public static void main(String[] args){}
 //    sout-System.out.println();

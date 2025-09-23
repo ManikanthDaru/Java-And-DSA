@@ -24,8 +24,8 @@ public class Variables {
 //        System.out.println(age);
         age = 21;
         System.out.println(age);
-//        java: incompatible types: possible lossy conversion from double to int
 
+//        java: incompatible types: possible lossy conversion from double to int
 //        age = 31.5;
 //        System.out.println(age);
         int productsSold = 1200;
@@ -54,9 +54,25 @@ public class Variables {
         String myName = "Manikanth Daru";
         System.out.println("My name is: "+myName); // string concatenation
 
-//        Scanner input=new Scanner(System.in);
-//        int a=input.nextInt();
-//        System.out.println(a);
+//      taking user input
+        Scanner input=new Scanner(System.in);
+        System.out.print("Enter your name: ");
+//        String name = input.next();
+        String name = input.nextLine();
+        System.out.println(name);
 
+        System.out.print("Enter your age: ");
+        int myAge = input.nextInt();
+        System.out.println(myAge);
+
+        System.out.println("Are you a student (Say True/False): ");
+        boolean isAStudent = input.nextBoolean();
+        System.out.println(isAStudent? "Yes":"No");
+
+//        calculate area of a triangle
+        int base = input.nextInt();
+        int height = input.nextInt();
+        System.out.println("Area of a triangle is: "+0.5*base*height);
+        input.close();
     }
 }
