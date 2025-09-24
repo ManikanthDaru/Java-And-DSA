@@ -1,3 +1,5 @@
+package Strings.src;
+
 import java.util.Arrays;
 
 public class ComparingStrings {
@@ -24,7 +26,7 @@ public class ComparingStrings {
         String d=new String("Manikanth Daru");
         String e=new String("Manikanth Daru");
         System.out.println(d==e); //false
-//        here in the above case a,b are pointing towards different objects having
+//        here in the above case d,e are pointing towards different objects having
 //        the same value i.e "Manikanth Daru"
 //        2. .equals() method >checks only whether the value is same or not
         System.out.println(a.equals(b)); //true

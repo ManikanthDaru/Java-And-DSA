@@ -1,3 +1,5 @@
+package Strings.src;
+
 public class FormattedString {
     public static void main(String[] args) {
         System.out.println("Manikanth Daru");

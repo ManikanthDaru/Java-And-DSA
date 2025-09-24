@@ -1,3 +1,5 @@
+package Strings.src;
+
 public class Performance {
     public static void main(String[] args) {
 //        here the performance is very low
